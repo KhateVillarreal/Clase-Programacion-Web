@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+   <link rel="stylesheet" href="estilo.css">
+   <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+    <title>Document</title>
+    <script>
+        /*expresion regular para validar un mail*/
+    var expr=(/^([a-zA-Z0-9._-])+\@(([a-zA-Z0-9.-])\.)([a-zA-Z]{2,4})+$/);
+        /*declaramos el evento en funcion directa*/
+        $(document).ready(function(){
+            /*funcion click enviar documento*/
+            $("#bEnviar").click(function(){
+                /*variables*/
+            var nombre = $("#itnombre").val();
+            var correo = $("#itmail").val();
+            var asunto = $("#itasunto").val();
+            /*validamos los campos de texto*/
+            if (nombre == ""){
+                alert("Por favor, rellena todos los campos.");
+                 event.preventDefault();
+                $("#mensaje1").fadeIn();  /*funcion levanta animaciones*/
+                /*retorno en falso para cuando no se envie el formulario*/
+                return false;
+            }else{
+                /*oculta mensaje*/
+                $("mensaje1").fadeOut();/*funcion baja animaciones*/
+                if (correo == "" || !expr.test(correo)){
+                    $("mensaje2").fadeIn();/*funcion levanta animaciones*/
+                    }else{ 
+                        $("mensaje2").fadeOut();
+                        if(asunto == ""){
+                            $(mensaje3).fadeIn();
+                            return false;
+                        }
+                }
+        }
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div class="abs-center">
+        <form class="form">
+            <h1>Formulario</h1>
+            <br>
+            <label for="itnombre"> Nombre</label><br/>
+            <input type="text" id="itnombre" class="campo"><br/>
+            <div id="#mensaje1" class="errores">Ingrese su nombre</div>
+
+            <label for="itmail">Correo Electronico</label><br/>
+            <input type="text" id="itmail" class="campo"><br/>
+            <div id="#mensaje2" class="errores">Escriba bien su email</div>
+
+            <label for="itasunto">Asunto</label><br/>
+            <input type="text" id="itasunto" class="campo"><br/>
+            <div id="#mensaje3" class="errores">Escriba el asunto de documento</div>
+
+
+            <input type="submit" id= "bEnviar" value="Enviar Datos"   >
+        </form>
+
+
+
+
+
+    </div>
+
+
+
+</body>
+</html>
